@@ -21,6 +21,8 @@ struct AddItemView: View {
     @State var alertTitle:String = ""
     @State var showAddReminder:Bool = false
     @State var reminderDate:Date = Date()
+    @State var priority:String = "P3"
+    
     
     enum ReminderOption {
         case everyDay, specificDay, none
@@ -36,6 +38,29 @@ struct AddItemView: View {
                 // 输入框
                 searchBar
                 .padding(.vertical)
+                
+                VStack(){
+                    
+                    Text("优先级(默认P3)")
+                        .font(.title)
+                        .foregroundColor(.theme.black)
+                        .padding()
+                    // flags
+                    Picker("Priority", selection: $priority) {
+                        ForEach(0..<vm.priArray.count) { idx in
+                            Label(vm.priArray[idx].0.rawValue, systemImage: vm.priArray[idx].1)
+                                .foregroundColor(vm.priArray[idx].2)
+                        }
+                    }
+                    .pickerStyle(WheelPickerStyle())
+                    .frame(height: 180)
+                }
+                .background(Color.theme.gray.opacity(0.2))
+                .cornerRadius(15)
+                .padding(.vertical)
+               
+
+                
                 
                 reminderButtons
                 
@@ -174,9 +199,6 @@ extension AddItemView{
                     showAddReminder = false
                 }
             }
-            else{
-                print(error)
-            }
         }
     }
     
@@ -251,7 +273,9 @@ extension AddItemView{
             }
             
             
-            vm.addItem(title: textFieldText, createTime: date, remindeTime: reminderOption != .none ? reminderDate : nil)
+            guard let priorityData = Priority(rawValue: priority) else { return }
+            
+            vm.addItem(title: textFieldText, createTime: date, remindeTime: reminderOption != .none ? reminderDate : nil, priority:  priorityData)
             
             if isPresented{
                 isPresented.toggle()
@@ -276,5 +300,6 @@ extension AddItemView{
 struct AddItemView_Previews: PreviewProvider {
     static var previews: some View {
         AddItemView(date: .constant(Date()),isPresented: .constant(false))
+            .environmentObject(HomeViewModel())
     }
 }

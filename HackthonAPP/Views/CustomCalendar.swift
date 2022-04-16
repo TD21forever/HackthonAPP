@@ -80,9 +80,6 @@ struct CustomCalendar: View {
             
         }
         .onChange(of: currentMonthIdx) { newValue in
-            print(currentMonthIdx)
-            print(getCurMonth())
-            print("====")
             self.currentDate = getCurMonth()
 
         }
@@ -99,29 +96,43 @@ extension CustomCalendar{
             
             if value.day != -1{
                 
-                if let task = vm.tasks.first(where: {$0.createTime.isSameDay(date: value.date)})
-                {
-                    
-                    
-                    Text("\(value.day)")
-                        .font(.title3)
-                        .opacity(value.day == -1 ? 0 : 1)
-                    
-                    Spacer()
-                    
-                    Circle()
-                        .fill(value.date.isSameDay(date: currentDate) ? Color.theme.orange : Color.theme.blue )
-                    
-                        .frame(width: 8, height: 8)
-                }else{
-                    
-                    Text("\(value.day)")
-                        .font(.title3)
-                        .opacity(value.day == -1 ? 0 : 1)
-                    
-                    Spacer()
+                let tasks = vm.tasks.filter { taskData in
+                    return taskData.createTime.isSameDay(date: value.date)
                 }
+                
+                let taskP0 = tasks.filter({$0.priority == .P0}).prefix(3)
+                let taskP1 = tasks.filter({$0.priority == .P1}).prefix(3)
+                let taskP2 = tasks.filter({$0.priority == .P2}).prefix(3)
+                let taskP3 = tasks.filter({$0.priority == .P3}).prefix(3)
+                
+                let taskP = [taskP0,taskP1,taskP2,taskP3]
+                
+                Text("\(value.day)")
+                    .font(.title3)
+                    .opacity(value.day == -1 ? 0 : 1)
+                
+                Spacer()
+             
                     
+                    ForEach(0..<taskP.count) { idx in
+                        
+                    VStack{
+                        ForEach(taskP[idx]) { task in
+                            HStack{
+                                Circle()
+                                    . fill(
+                                        
+                                        vm.priArray.first(where: { (p,_,_) in
+                                            return task.priority == p
+                                        })?.2 ?? Color.theme.gray
+                                    
+                                    )
+                                    .frame(width: 8, height: 8)
+                            }
+                        }
+                        
+                    }
+                }
                 
             }
             

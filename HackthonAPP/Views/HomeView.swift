@@ -13,21 +13,47 @@ struct HomeView: View {
     @State var date:Date = Date()
     
     var body: some View {
-        
-        NavigationView{
+        TabView{
             
-            VStack{
+            NavigationView{
+                 
+                VStack{
+                    
+                    CalendarView(date: $date)
+                    Divider()
+                    ListView(date: $date)
+                }
+               
+                .onAppear {
+                    NotificationManager.instance.reloadAuthorizationStatus()
+                }
+                .onChange(of: NotificationManager.instance.authorizationStatus , perform: performauthorizationStatus)
+             
                 
-                CalendarView(date: $date)
-                Divider()
-                ListView(date: $date)
+              
+                .navigationBarHidden(true)
             }
-           
-            .onAppear {
-                NotificationManager.instance.reloadAuthorizationStatus()
+            .tabItem {
+                Image(systemName: "note.text")
+//                    Text("今天")
             }
-            .onChange(of: NotificationManager.instance.authorizationStatus , perform: performauthorizationStatus)
-            .navigationBarHidden(true)
+            
+            NavigationView{
+                 
+               CustomCalendar(currentDate: $date)
+                
+              
+                .navigationBarHidden(true)
+               
+                
+            }
+            .tabItem {
+                Image(systemName: "note.text")
+//                    Text("日程")
+            }
+                
+            
+      
         }
         
 

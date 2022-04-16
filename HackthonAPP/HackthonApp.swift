@@ -13,7 +13,7 @@ struct HackthonApp: App {
     @State var date:Date = Date()
     var body: some Scene {
         WindowGroup {
-            CustomCalendar(currentDate: $date)
+            HomeView()
                 .environmentObject(homeViewModel)
         }
     }

@@ -36,9 +36,9 @@ struct ListItemView: View {
 struct ListItemView_Previews: PreviewProvider {
     static var previews: some View {
         Group{
-            ListItemView(item: TaskModel(title: "Hello", isCompleted: false, creteTime: Date(), remindeTime: Date()))
+            ListItemView(item: TaskModel(title: "Hello", isCompleted: false, creteTime: Date(), remindeTime: Date(), priority: .P0))
             
-            ListItemView(item: TaskModel(title: "Hello", isCompleted: false, creteTime: Date(), remindeTime: nil))
+            ListItemView(item: TaskModel(title: "Hello", isCompleted: false, creteTime: Date(), remindeTime: nil, priority: .P2))
           
         }
         .previewLayout(.sizeThatFits)

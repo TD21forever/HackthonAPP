@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F5303463280B424D00FFC26B /* CapsuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5303462280B424D00FFC26B /* CapsuleView.swift */; };
 		F55CAD35280A4BF300ECFCA0 /* HackthonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD34280A4BF300ECFCA0 /* HackthonApp.swift */; };
 		F55CAD37280A4BF300ECFCA0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD36280A4BF300ECFCA0 /* ContentView.swift */; };
 		F55CAD39280A4BF300ECFCA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F55CAD38280A4BF300ECFCA0 /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F5303462280B424D00FFC26B /* CapsuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleView.swift; sourceTree = "<group>"; };
 		F55CAD31280A4BF300ECFCA0 /* HackthonAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackthonAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F55CAD34280A4BF300ECFCA0 /* HackthonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackthonApp.swift; sourceTree = "<group>"; };
 		F55CAD36280A4BF300ECFCA0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				F55CAD46280A7F6E00ECFCA0 /* CalendarView.swift */,
 				F55CAD57280A9E8A00ECFCA0 /* AddItemView.swift */,
 				F55CAD5D280B0C9C00ECFCA0 /* CustomCalendar.swift */,
+				F5303462280B424D00FFC26B /* CapsuleView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				F55CAD49280A7F8F00ECFCA0 /* HomeView.swift in Sources */,
 				F55CAD56280A965C00ECFCA0 /* ListView.swift in Sources */,
 				F55CAD35280A4BF300ECFCA0 /* HackthonApp.swift in Sources */,
+				F5303463280B424D00FFC26B /* CapsuleView.swift in Sources */,
 				F55CAD5E280B0C9C00ECFCA0 /* CustomCalendar.swift in Sources */,
 				F55CAD60280B112F00ECFCA0 /* DateModel.swift in Sources */,
 				F55CAD52280A92FD00ECFCA0 /* ListItemView.swift in Sources */,
