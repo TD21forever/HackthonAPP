@@ -10,10 +10,10 @@ import SwiftUI
 @main
 struct HackthonApp: App {
     @StateObject var homeViewModel:HomeViewModel = HomeViewModel()
-
+    @State var date:Date = Date()
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            CustomCalendar(currentDate: $date)
                 .environmentObject(homeViewModel)
         }
     }

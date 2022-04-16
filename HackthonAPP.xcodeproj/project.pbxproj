@@ -22,6 +22,8 @@
 		F55CAD58280A9E8A00ECFCA0 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD57280A9E8A00ECFCA0 /* AddItemView.swift */; };
 		F55CAD5A280AA52700ECFCA0 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD59280AA52700ECFCA0 /* Date.swift */; };
 		F55CAD5C280AB78B00ECFCA0 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD5B280AB78B00ECFCA0 /* NotificationManager.swift */; };
+		F55CAD5E280B0C9C00ECFCA0 /* CustomCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD5D280B0C9C00ECFCA0 /* CustomCalendar.swift */; };
+		F55CAD60280B112F00ECFCA0 /* DateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD5F280B112F00ECFCA0 /* DateModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,8 @@
 		F55CAD57280A9E8A00ECFCA0 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
 		F55CAD59280AA52700ECFCA0 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		F55CAD5B280AB78B00ECFCA0 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		F55CAD5D280B0C9C00ECFCA0 /* CustomCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendar.swift; sourceTree = "<group>"; };
+		F55CAD5F280B112F00ECFCA0 /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +114,7 @@
 				F55CAD55280A965C00ECFCA0 /* ListView.swift */,
 				F55CAD46280A7F6E00ECFCA0 /* CalendarView.swift */,
 				F55CAD57280A9E8A00ECFCA0 /* AddItemView.swift */,
+				F55CAD5D280B0C9C00ECFCA0 /* CustomCalendar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 			children = (
 				F55CAD4A280A7FAE00ECFCA0 /* CalendarModel.swift */,
 				F55CAD4F280A918900ECFCA0 /* TaskModel.swift */,
+				F55CAD5F280B112F00ECFCA0 /* DateModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -214,6 +220,8 @@
 				F55CAD49280A7F8F00ECFCA0 /* HomeView.swift in Sources */,
 				F55CAD56280A965C00ECFCA0 /* ListView.swift in Sources */,
 				F55CAD35280A4BF300ECFCA0 /* HackthonApp.swift in Sources */,
+				F55CAD5E280B0C9C00ECFCA0 /* CustomCalendar.swift in Sources */,
+				F55CAD60280B112F00ECFCA0 /* DateModel.swift in Sources */,
 				F55CAD52280A92FD00ECFCA0 /* ListItemView.swift in Sources */,
 				F55CAD47280A7F6E00ECFCA0 /* CalendarView.swift in Sources */,
 				F55CAD5C280AB78B00ECFCA0 /* NotificationManager.swift in Sources */,

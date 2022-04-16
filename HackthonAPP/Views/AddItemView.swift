@@ -173,7 +173,9 @@ extension AddItemView{
                 DispatchQueue.main.async {
                     showAddReminder = false
                 }
-                
+            }
+            else{
+                print(error)
             }
         }
     }
@@ -250,6 +252,10 @@ extension AddItemView{
             
             
             vm.addItem(title: textFieldText, createTime: date, remindeTime: reminderOption != .none ? reminderDate : nil)
+            
+            if isPresented{
+                isPresented.toggle()
+            }
         }
     }
     

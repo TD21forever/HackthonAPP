@@ -9,6 +9,22 @@ import Foundation
 
 extension Date{
     
+    func getOneMonthDates()->[Date]{
+        let calendar = Calendar.current
+        
+        guard let startDate = calendar.date(from: Calendar.current.dateComponents([.year, .month], from: self)) else { return [] }
+        
+        // 从startDate开始的一个月
+        guard var range = calendar.range(of: .day, in: .month, for: startDate) else {return []}
+        range.removeLast()
+        return range.compactMap({ day -> Date in
+            
+            guard let calendarDate = calendar.date(byAdding: .day, value: day == 1 ? 0 : day-1, to: startDate) else {return startDate}
+            
+                    return calendarDate
+        })
+    }
+    
     func isSameDay(date:Date)->Bool{
         let calendar = Calendar.current
         return calendar.isDate(self, inSameDayAs: date)
@@ -26,8 +42,7 @@ extension Date{
         formatter.locale = Locale(identifier: "zh_hans_CN")
         formatter.timeZone = TimeZone(identifier: "CCD")
         formatter.setLocalizedDateFormatFromTemplate("dd MMM hh.mm")
-//        formatter.dateStyle = .short
-//        formatter.timeStyle = .short
+
         return formatter
     }
     

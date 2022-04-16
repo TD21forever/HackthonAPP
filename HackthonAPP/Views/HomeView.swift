@@ -14,17 +14,22 @@ struct HomeView: View {
     
     var body: some View {
         
-        VStack{
+        NavigationView{
             
-            CalendarView(date: $date)
-            Divider()
-            ListView(date: $date)
+            VStack{
+                
+                CalendarView(date: $date)
+                Divider()
+                ListView(date: $date)
+            }
+           
+            .onAppear {
+                NotificationManager.instance.reloadAuthorizationStatus()
+            }
+            .onChange(of: NotificationManager.instance.authorizationStatus , perform: performauthorizationStatus)
+            .navigationBarHidden(true)
         }
-        .ignoresSafeArea()
-        .onAppear {
-            NotificationManager.instance.reloadAuthorizationStatus()
-        }
-        .onChange(of: NotificationManager.instance.authorizationStatus , perform: performauthorizationStatus)
+        
 
     }
 }
