@@ -41,14 +41,21 @@ struct CalendarView: View {
 extension CalendarView{
     
     func updateCurCalendar(){
+        var gregorian = Calendar(identifier: .gregorian)
+        gregorian.locale = Locale(identifier: "zh_CH")
+        
+        let weekSymbol = gregorian.weekdaySymbols
+        let monthSymbol = gregorian.monthSymbols
+        
+        
         let current = Calendar.current
 
         let day = current.component(.day, from: date)
         let year = current.component(.year, from: date)
-        let month = current.component(.month, from: date)
-        let week = current.component(.weekday, from: date)
+        let monthId = current.component(.month, from: date)
+        let weekId = current.component(.weekday, from: date) - 1
         
-        calendar = CalendarModel(date: date, day: "\(day)", week:"\(week)" ,year: "\(year)", month: "\(month)")
+        calendar = CalendarModel(date: date, day: "\(day)", week:"\(weekSymbol[weekId])" ,year: "\(year)", month: "\(monthSymbol[monthId])")
         
         
     }
@@ -61,12 +68,11 @@ extension CalendarView{
             // Text
             HStack{
                 Spacer(minLength: 0)
-                Text(calendar.month + " 月")
+                Text(calendar.month)
                     .foregroundColor(.theme.accent)
                 Spacer()
             }
-            .padding(.top,40)
-            .background(Color.theme.red)
+            .padding(.top)
             
             monthButtonView
      
@@ -82,8 +88,8 @@ extension CalendarView{
                 
             } label: {
                 Image(systemName: "arrow.left")
-                    .font(.largeTitle)
-                    .foregroundColor(Color.theme.black)
+                    .font(.title)
+                    .foregroundColor(Color.theme.gray)
             }
             Spacer()
             Button {
@@ -91,8 +97,8 @@ extension CalendarView{
                 updateCurCalendar()
             } label: {
                 Image(systemName: "arrow.right")
-                    .font(.largeTitle)
-                    .foregroundColor(Color.theme.black)
+                    .font(.title)
+                    .foregroundColor(Color.theme.gray)
             }
 
         }
@@ -109,7 +115,7 @@ extension CalendarView{
                 .font(.system(size:65))
                 .fontWeight(.bold)
             // 周
-            Text("星 期 "+calendar.week)
+            Text(calendar.week)
                 .padding(.vertical)
         }
     }
@@ -121,8 +127,8 @@ extension CalendarView{
                 updateCurCalendar()
             } label: {
                 Image(systemName: "arrow.left")
-                    .font(.largeTitle)
-                    .foregroundColor(Color.theme.black)
+                    .font(.title)
+                    .foregroundColor(Color.theme.gray)
             }
             Spacer()
             Button {
@@ -130,8 +136,8 @@ extension CalendarView{
                 updateCurCalendar()
             } label: {
                 Image(systemName: "arrow.right")
-                    .font(.largeTitle)
-                    .foregroundColor(Color.theme.black)
+                    .font(.title)
+                    .foregroundColor(Color.theme.gray)
             }
 
         }
@@ -153,8 +159,8 @@ extension CalendarView{
                     updateCurCalendar()
                 } label: {
                     Image(systemName: "arrow.left")
-                        .font(.largeTitle)
-                        .foregroundColor(Color.theme.black)
+                        .font(.title)
+                        .foregroundColor(Color.theme.gray)
                 }
                 Spacer()
                 Button {
@@ -163,8 +169,8 @@ extension CalendarView{
                 } label: {
                     
                     Image(systemName: "arrow.right")
-                        .font(.largeTitle)
-                        .foregroundColor(Color.theme.black)
+                        .font(.title)
+                        .foregroundColor(Color.theme.gray)
                 }
 
             }

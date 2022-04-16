@@ -34,98 +34,12 @@ struct AddItemView: View {
             VStack{
                 
                 // 输入框
-                HStack{
-                    TextField("请输入你的任务", text: $textFieldText)
-                        
-                        .padding(.horizontal)
-                        .frame(height: 65)
-                        .background(Color.theme.black.opacity(0.3))
-                        .cornerRadius(10)
-
-                }
+                searchBar
                 .padding(.vertical)
                 
+                reminderButtons
                 
-                // 提醒按钮
-                
-                HStack(){
-                    // 在指定日期提醒我
-                    Button {
-                        withAnimation(.linear(duration: 0.05)) {
-                            reminderOption = .specificDay
-                        }
-                        
-                    } label: {
-                        
-                        HStack {
-                            
-                               Image(systemName: "calendar.badge.clock")
-                                   .font(.title2)
-                               Text("指定日期")
-                                   .fontWeight(.semibold)
-                                   .font(.title2)
-                           }
-                           .padding()
-                           .padding(.trailing, 12)
-                           .foregroundColor(.white)
-                           .background(Color.theme.black)
-                           .cornerRadius(10)
-                   
-                            
-                    }
-                    
-                    Spacer()
-                    
-                    // 每日提醒我
-                    
-                    Button {
-                        withAnimation(.linear(duration: 0.02)) {
-                            reminderOption = .everyDay
-                        }
-                        
-                    } label: {
-                        
-                        HStack {
-                               Image(systemName: "clock.circle.fill")
-                                   .font(.title2)
-                               Text("每日提醒")
-                                   .fontWeight(.semibold)
-                                   .font(.title2)
-                           }
-                           .padding()
-                           .padding(.leading, 12)
-                           .foregroundColor(.white)
-                           .background(Color.theme.black)
-                           .cornerRadius(10)
-                
-                    }
-                }
-                
-             
-                switch reminderOption {
-                    
-                    case .everyDay:
-                        
-                        HStack{
-                            Text("每日")
-                            DatePicker("", selection: $reminderDate, displayedComponents: .hourAndMinute)
-                                .padding(.vertical)
-                            Text("提醒我")
-                        }
-                        .font(.title)
-                    case .specificDay:
-                        HStack{
-                            Text("在")
-                            DatePicker("", selection: $reminderDate)
-                                .padding(.vertical)
-                            Text("提醒我")
-                        }
-                        .font(.title)
-                    case .none:
-                    EmptyView()
-                }
-                
-
+                reminderOptionView
                 
                 Button {
                     saveButtonPressed(date)
@@ -164,56 +78,177 @@ struct AddItemView: View {
 
 extension AddItemView{
     
+    
+    // MARK: 输入框
+    private var searchBar: some View {
+        
+        HStack{
+            TextField("请输入你的任务", text: $textFieldText)
+                
+                .padding(.horizontal)
+                .frame(height: 65)
+                .background(Color.theme.black.opacity(0.3))
+                .cornerRadius(10)
+        }
+        
+    }
+    
+    
+    // MARK: 提醒按钮组
+    private var reminderButtons: some View{
+        
+        HStack{
+            
+            // 在指定日期提醒我
+            Button {
+                withAnimation(.linear(duration: 0.05)) {
+                    reminderOption = reminderOption == .specificDay ? .none : .specificDay
+                }
+                
+            } label: {
+                
+                HStack {
+                    
+                       Image(systemName: "calendar.badge.clock")
+                           .font(.title2)
+                       Text("指定日期")
+                           .fontWeight(.semibold)
+                           .font(.title2)
+                   }
+                   .padding()
+                   .padding(.trailing, 12)
+                   .foregroundColor(.white)
+                   .background(Color.theme.black)
+                   .cornerRadius(10)
+            }
+            
+            Spacer()
+            
+            // 每日提醒我
+            
+            Button {
+                withAnimation(.linear(duration: 0.02)) {
+                    reminderOption = reminderOption == .everyDay ? .none : .everyDay
+                }
+                
+            } label: {
+                
+                HStack {
+                       Image(systemName: "clock.circle.fill")
+                           .font(.title2)
+                       Text("每日提醒")
+                           .fontWeight(.semibold)
+                           .font(.title2)
+                   }
+                   .padding()
+                   .padding(.leading, 12)
+                   .foregroundColor(.white)
+                   .background(Color.theme.black)
+                   .cornerRadius(10)
+            }
+        }
+        
+    }
+    
+    
+    // 指定日期按钮逻辑
+    private func buttonPressSpecificDay(){
+        
+        let dateComponets = Calendar.current.dateComponents([.day, .hour, .minute], from: reminderDate)
+        
+        guard
+            let hour = dateComponets.hour,
+            let minute = dateComponets.minute,
+            let day = dateComponets.day
+                
+        else{
+            
+            return
+        }
+    
+        NotificationManager.instance.createLocalNotificationForSpecificDay(title: textFieldText, day: day, hour: hour, minute: minute) { error in
+            
+            if error == nil {
+                
+                DispatchQueue.main.async {
+                    showAddReminder = false
+                }
+                
+            }
+        }
+    }
+    
+    private func buttonPressEveryDay(){
+        let dateComponets = Calendar.current.dateComponents([.hour, .minute], from: reminderDate)
+        
+        guard
+            let hour = dateComponets.hour,
+            let minute = dateComponets.minute
+                
+        else{
+            print("ERROR RETURN EVERYDAY")
+            return
+        }
+    
+        NotificationManager.instance.createLocalNotification(title: textFieldText, hour: hour, minute: minute, repeate: true, completion: { error in
+            if error == nil {
+                isPresented = false
+            }
+            
+        })
+    }
+    
+    private var reminderOptionView:some View{
+        
+        HStack{
+            
+            switch reminderOption {
+                
+                case .everyDay:
+                    
+                    HStack{
+                        Text("每日")
+                        DatePicker("", selection: $reminderDate, displayedComponents: .hourAndMinute)
+                            .padding(.vertical)
+                        Text("提醒我")
+                    }
+                    .font(.title2)
+
+                
+                case .specificDay:
+                    HStack{
+                        Text("在")
+                        DatePicker("", selection: $reminderDate)
+                            .padding(.vertical)
+                        Text("提醒我")
+                    }
+                    .font(.title2)
+
+                case .none:
+                    Text("")
+            }
+            
+
+        }
+        
+    
+    }
+    
+    // MARK: 点击保存按钮
     func saveButtonPressed(_ date:Date){
         if checkIsTitleAppropriate(){
             
             switch reminderOption{
                 
             case .specificDay:
-                    let dateComponets = Calendar.current.dateComponents([.day, .hour, .minute], from: reminderDate)
-                    
-                    guard
-                        let hour = dateComponets.hour,
-                        let minute = dateComponets.minute,
-                        let day = dateComponets.day
-                            
-                    else{
-                        print("ERROR RETURN")
-                        return
-                    }
-                
-                NotificationManager.instance.createLocalNotificationForSpecificDay(title: textFieldText, day: day, hour: hour, minute: minute) { error in
-                    
-                    if error == nil {
-                        
-                        DispatchQueue.main.async {
-                            showAddReminder = false
-                        }
-                        
-                    }
-                }
+                buttonPressSpecificDay()
             case .everyDay:
-                let dateComponets = Calendar.current.dateComponents([.hour, .minute], from: reminderDate)
-                
-                guard
-                    let hour = dateComponets.hour,
-                    let minute = dateComponets.minute
-                        
-                else{
-                    print("ERROR RETURN EVERYDAY")
-                    return
-                }
-            
-                NotificationManager.instance.createLocalNotification(title: textFieldText, hour: hour, minute: minute, repeate: true, completion: { error in
-                    if error == nil {
-                        isPresented = false
-                    }
-                    
-                })
+                buttonPressEveryDay()
             case.none:
                 break
             }
-                        
+            
+            
             vm.addItem(title: textFieldText, createTime: date, remindeTime: reminderOption != .none ? reminderDate : nil)
         }
     }

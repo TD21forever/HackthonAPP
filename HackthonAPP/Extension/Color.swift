@@ -17,4 +17,7 @@ struct Theme {
     let green = Color("green")
     let accent = Color("accent")
     let black = Color("black")
+    let blue = Color("blue")
+    let orange = Color("orange")
+    let gray = Color("gray")
 }

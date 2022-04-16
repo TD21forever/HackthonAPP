@@ -12,16 +12,24 @@ struct ListItemView: View {
     var body: some View {
         HStack{
             Image(systemName: item.isCompleted ? "checkmark.circle" : "circle")
-                .foregroundColor(item.isCompleted ? Color.theme.green : Color.theme.red)
+                .foregroundColor(item.isCompleted ? Color.theme.gray : Color.theme.orange)
             Text(item.title)
+
+            Spacer()
+            
             if let time = item.remindeTime{
-                Text("提醒时间\(time.description)")
+//                Text("提醒时间\n \(time.readableString(format: "dd MMM hh.mm"))")
+
+            Text("\(time.chString())")
+                .font(.headline)
+                .foregroundColor(.theme.blue)
+                
             }
             
-            Spacer()
+            
         }
-        .font(.title2)
-        .padding(.vertical,10)
+        .font(.title)
+        .padding(.vertical,24)
     }
 }
 
