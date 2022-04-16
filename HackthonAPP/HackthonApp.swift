@@ -8,10 +8,13 @@
 import SwiftUI
 
 @main
-struct HackthonAPPApp: App {
+struct HackthonApp: App {
+    @StateObject var homeViewModel:HomeViewModel = HomeViewModel()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
+                .environmentObject(homeViewModel)
         }
     }
 }
