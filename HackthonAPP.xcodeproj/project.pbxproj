@@ -7,18 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F55CAD35280A4BF300ECFCA0 /* HackthonAPPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD34280A4BF300ECFCA0 /* HackthonAPPApp.swift */; };
+		F55CAD35280A4BF300ECFCA0 /* HackthonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD34280A4BF300ECFCA0 /* HackthonApp.swift */; };
 		F55CAD37280A4BF300ECFCA0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD36280A4BF300ECFCA0 /* ContentView.swift */; };
 		F55CAD39280A4BF300ECFCA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F55CAD38280A4BF300ECFCA0 /* Assets.xcassets */; };
 		F55CAD3C280A4BF300ECFCA0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F55CAD3B280A4BF300ECFCA0 /* Preview Assets.xcassets */; };
+		F55CAD47280A7F6E00ECFCA0 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD46280A7F6E00ECFCA0 /* CalendarView.swift */; };
+		F55CAD49280A7F8F00ECFCA0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD48280A7F8F00ECFCA0 /* HomeView.swift */; };
+		F55CAD4B280A7FAE00ECFCA0 /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD4A280A7FAE00ECFCA0 /* CalendarModel.swift */; };
+		F55CAD4E280A844F00ECFCA0 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD4D280A844F00ECFCA0 /* Color.swift */; };
+		F55CAD50280A918900ECFCA0 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD4F280A918900ECFCA0 /* TaskModel.swift */; };
+		F55CAD52280A92FD00ECFCA0 /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD51280A92FD00ECFCA0 /* ListItemView.swift */; };
+		F55CAD54280A94B800ECFCA0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD53280A94B800ECFCA0 /* HomeViewModel.swift */; };
+		F55CAD56280A965C00ECFCA0 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD55280A965C00ECFCA0 /* ListView.swift */; };
+		F55CAD58280A9E8A00ECFCA0 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD57280A9E8A00ECFCA0 /* AddItemView.swift */; };
+		F55CAD5A280AA52700ECFCA0 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD59280AA52700ECFCA0 /* Date.swift */; };
+		F55CAD5C280AB78B00ECFCA0 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD5B280AB78B00ECFCA0 /* NotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F55CAD31280A4BF300ECFCA0 /* HackthonAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackthonAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F55CAD34280A4BF300ECFCA0 /* HackthonAPPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackthonAPPApp.swift; sourceTree = "<group>"; };
+		F55CAD34280A4BF300ECFCA0 /* HackthonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackthonApp.swift; sourceTree = "<group>"; };
 		F55CAD36280A4BF300ECFCA0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F55CAD38280A4BF300ECFCA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F55CAD3B280A4BF300ECFCA0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F55CAD46280A7F6E00ECFCA0 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		F55CAD48280A7F8F00ECFCA0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		F55CAD4A280A7FAE00ECFCA0 /* CalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
+		F55CAD4D280A844F00ECFCA0 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		F55CAD4F280A918900ECFCA0 /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
+		F55CAD51280A92FD00ECFCA0 /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
+		F55CAD53280A94B800ECFCA0 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		F55CAD55280A965C00ECFCA0 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		F55CAD57280A9E8A00ECFCA0 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
+		F55CAD59280AA52700ECFCA0 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		F55CAD5B280AB78B00ECFCA0 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +73,12 @@
 		F55CAD33280A4BF300ECFCA0 /* HackthonAPP */ = {
 			isa = PBXGroup;
 			children = (
-				F55CAD34280A4BF300ECFCA0 /* HackthonAPPApp.swift */,
+				F55CAD4C280A844500ECFCA0 /* Extension */,
+				F55CAD45280A794C00ECFCA0 /* ViewModels */,
+				F55CAD44280A794500ECFCA0 /* Models */,
+				F55CAD43280A794000ECFCA0 /* Views */,
+				F55CAD42280A4C3000ECFCA0 /* Utils */,
+				F55CAD34280A4BF300ECFCA0 /* HackthonApp.swift */,
 				F55CAD36280A4BF300ECFCA0 /* ContentView.swift */,
 				F55CAD38280A4BF300ECFCA0 /* Assets.xcassets */,
 				F55CAD3A280A4BF300ECFCA0 /* Preview Content */,
@@ -65,6 +92,52 @@
 				F55CAD3B280A4BF300ECFCA0 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F55CAD42280A4C3000ECFCA0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F55CAD5B280AB78B00ECFCA0 /* NotificationManager.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		F55CAD43280A794000ECFCA0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F55CAD48280A7F8F00ECFCA0 /* HomeView.swift */,
+				F55CAD51280A92FD00ECFCA0 /* ListItemView.swift */,
+				F55CAD55280A965C00ECFCA0 /* ListView.swift */,
+				F55CAD46280A7F6E00ECFCA0 /* CalendarView.swift */,
+				F55CAD57280A9E8A00ECFCA0 /* AddItemView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F55CAD44280A794500ECFCA0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F55CAD4A280A7FAE00ECFCA0 /* CalendarModel.swift */,
+				F55CAD4F280A918900ECFCA0 /* TaskModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F55CAD45280A794C00ECFCA0 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F55CAD53280A94B800ECFCA0 /* HomeViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		F55CAD4C280A844500ECFCA0 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F55CAD4D280A844F00ECFCA0 /* Color.swift */,
+				F55CAD59280AA52700ECFCA0 /* Date.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +211,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				F55CAD37280A4BF300ECFCA0 /* ContentView.swift in Sources */,
-				F55CAD35280A4BF300ECFCA0 /* HackthonAPPApp.swift in Sources */,
+				F55CAD49280A7F8F00ECFCA0 /* HomeView.swift in Sources */,
+				F55CAD56280A965C00ECFCA0 /* ListView.swift in Sources */,
+				F55CAD35280A4BF300ECFCA0 /* HackthonApp.swift in Sources */,
+				F55CAD52280A92FD00ECFCA0 /* ListItemView.swift in Sources */,
+				F55CAD47280A7F6E00ECFCA0 /* CalendarView.swift in Sources */,
+				F55CAD5C280AB78B00ECFCA0 /* NotificationManager.swift in Sources */,
+				F55CAD4B280A7FAE00ECFCA0 /* CalendarModel.swift in Sources */,
+				F55CAD5A280AA52700ECFCA0 /* Date.swift in Sources */,
+				F55CAD54280A94B800ECFCA0 /* HomeViewModel.swift in Sources */,
+				F55CAD58280A9E8A00ECFCA0 /* AddItemView.swift in Sources */,
+				F55CAD4E280A844F00ECFCA0 /* Color.swift in Sources */,
+				F55CAD50280A918900ECFCA0 /* TaskModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
