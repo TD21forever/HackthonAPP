@@ -10,6 +10,7 @@ import UserNotifications
 import SwiftUI
 
 class NotificationManager{
+    
     static let instance = NotificationManager()
     
     @Published private(set) var authorizationStatus: UNAuthorizationStatus?

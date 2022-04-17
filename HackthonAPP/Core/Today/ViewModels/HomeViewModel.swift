@@ -42,7 +42,6 @@ class HomeViewModel:ObservableObject {
                         let priority = entity.priority
                             
                     else{
-                        print(entity)
                         return []
                     }
                     
