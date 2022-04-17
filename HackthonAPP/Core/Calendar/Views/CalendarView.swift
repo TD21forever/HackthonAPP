@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CalendarView: View {
     @State var calendar:CalendarModel = CalendarModel(date: Date(), day: "", week: "", year: "", month: "")
+    
     @Binding var date:Date
     
     let width = UIScreen.main.bounds.width
@@ -52,7 +53,7 @@ extension CalendarView{
 
         let day = current.component(.day, from: date)
         let year = current.component(.year, from: date)
-        let monthId = current.component(.month, from: date)
+        let monthId = current.component(.month, from: date) - 1
         let weekId = current.component(.weekday, from: date) - 1
         
         calendar = CalendarModel(date: date, day: "\(day)", week:"\(weekSymbol[weekId])" ,year: "\(year)", month: "\(monthSymbol[monthId])")
@@ -70,9 +71,9 @@ extension CalendarView{
                 Spacer(minLength: 0)
                 Text(calendar.month)
                     .foregroundColor(.theme.accent)
+                    .accessibilityLabel(Text(calendar.readMonth()))
                 Spacer()
             }
-            .padding(.top)
             
             monthButtonView
      
@@ -90,7 +91,12 @@ extension CalendarView{
                 Image(systemName: "arrow.left")
                     .font(.title)
                     .foregroundColor(Color.theme.gray)
+                    
+                   
             }
+            .accessibilityLabel(Text("增加月份" + "当前" + calendar.readMonth()))
+
+            
             Spacer()
             Button {
                 date = Calendar.current.date(byAdding: .month, value: 1, to: date) ?? Date()
@@ -99,10 +105,15 @@ extension CalendarView{
                 Image(systemName: "arrow.right")
                     .font(.title)
                     .foregroundColor(Color.theme.gray)
+                   
             }
+            .accessibilityLabel(Text("增加月份" + "当前" + calendar.readMonth()))
+
+            
 
         }
         .padding(.horizontal,30)
+       
 
     }
     
@@ -114,6 +125,7 @@ extension CalendarView{
             Text(calendar.day)
                 .font(.system(size:65))
                 .fontWeight(.bold)
+                .accessibilityLabel(Text("\(calendar.day)日"))
             // 周
             Text(calendar.week)
                 .padding(.vertical)
@@ -130,6 +142,8 @@ extension CalendarView{
                     .font(.title)
                     .foregroundColor(Color.theme.gray)
             }
+            .accessibilityLabel(Text("向前一天" + "当前" + calendar.readMonthAndDay()))
+
             Spacer()
             Button {
                 date = Calendar.current.date(byAdding: .day, value: 1, to: date) ?? Date()
@@ -139,6 +153,8 @@ extension CalendarView{
                     .font(.title)
                     .foregroundColor(Color.theme.gray)
             }
+            .accessibilityLabel(Text("向后一天" + "当前" + calendar.readMonthAndDay()))
+
 
         }
         .padding(.horizontal,30)
@@ -162,6 +178,8 @@ extension CalendarView{
                         .font(.title)
                         .foregroundColor(Color.theme.gray)
                 }
+                .accessibilityLabel(Text("向前一年" + "当前" + calendar.readYear()))
+
                 Spacer()
                 Button {
                     date = Calendar.current.date(byAdding: .year, value: 1, to: date) ?? Date()
@@ -172,6 +190,7 @@ extension CalendarView{
                         .font(.title)
                         .foregroundColor(Color.theme.gray)
                 }
+                .accessibilityLabel(Text("向后一年" + "当前" + calendar.readYear()))
 
             }
             .padding(.horizontal,30)

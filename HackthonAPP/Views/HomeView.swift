@@ -34,8 +34,12 @@ struct HomeView: View {
                 .navigationBarHidden(true)
             }
             .tabItem {
-                Image(systemName: "note.text")
-//                    Text("今天")
+                VStack{
+                    
+                    Image(systemName: "note.text")
+                    Text("今天")
+                }
+                
             }
             
             NavigationView{
@@ -48,8 +52,12 @@ struct HomeView: View {
                 
             }
             .tabItem {
-                Image(systemName: "note.text")
-//                    Text("日程")
+                VStack{
+                    
+                    Image(systemName: "calendar")
+                    Text("日程")
+                }
+                
             }
                 
             

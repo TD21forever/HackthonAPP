@@ -25,7 +25,7 @@ class NotificationManager{
     func requestAuthorization(){
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { isGranted, _ in
             DispatchQueue.main.async {
-                print(isGranted)
+
                 self.authorizationStatus = isGranted ? .authorized : .denied
             }
         }
@@ -37,10 +37,6 @@ class NotificationManager{
 //
 //            }
             self.notifications = notificationsData
-            print(self.notifications.count)
-            for i in 0..<self.notifications.count{
-                print(self.notifications[i])
-            }
         }
     }
     
@@ -56,7 +52,7 @@ class NotificationManager{
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: repeate)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: notificationContent, trigger: trigger)
-        print(request)
+
         UNUserNotificationCenter.current().add(request, withCompletionHandler: completion)
     }
     

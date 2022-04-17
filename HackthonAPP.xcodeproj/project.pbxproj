@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		F5303463280B424D00FFC26B /* CapsuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5303462280B424D00FFC26B /* CapsuleView.swift */; };
+		F5303466280B501100FFC26B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F5303468280B501100FFC26B /* Localizable.strings */; };
+		F530346C280BA53300FFC26B /* TaskDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F530346B280BA53300FFC26B /* TaskDataService.swift */; };
+		F530346F280BA5F700FFC26B /* TaskData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F530346D280BA5F700FFC26B /* TaskData.xcdatamodeld */; };
 		F55CAD35280A4BF300ECFCA0 /* HackthonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD34280A4BF300ECFCA0 /* HackthonApp.swift */; };
 		F55CAD37280A4BF300ECFCA0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD36280A4BF300ECFCA0 /* ContentView.swift */; };
 		F55CAD39280A4BF300ECFCA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F55CAD38280A4BF300ECFCA0 /* Assets.xcassets */; };
@@ -29,6 +32,10 @@
 
 /* Begin PBXFileReference section */
 		F5303462280B424D00FFC26B /* CapsuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleView.swift; sourceTree = "<group>"; };
+		F5303467280B501100FFC26B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		F5303469280B504200FFC26B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F530346B280BA53300FFC26B /* TaskDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDataService.swift; sourceTree = "<group>"; };
+		F530346E280BA5F700FFC26B /* TaskData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaskData.xcdatamodel; sourceTree = "<group>"; };
 		F55CAD31280A4BF300ECFCA0 /* HackthonAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackthonAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F55CAD34280A4BF300ECFCA0 /* HackthonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackthonApp.swift; sourceTree = "<group>"; };
 		F55CAD36280A4BF300ECFCA0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -60,6 +67,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F530346A280BA50500FFC26B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F530346B280BA53300FFC26B /* TaskDataService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		F55CAD28280A4BF300ECFCA0 = {
 			isa = PBXGroup;
 			children = (
@@ -79,13 +94,15 @@
 		F55CAD33280A4BF300ECFCA0 /* HackthonAPP */ = {
 			isa = PBXGroup;
 			children = (
+				F5680ACA280BD12100E67F29 /* Core */,
+				F530346A280BA50500FFC26B /* Services */,
 				F55CAD4C280A844500ECFCA0 /* Extension */,
-				F55CAD45280A794C00ECFCA0 /* ViewModels */,
 				F55CAD44280A794500ECFCA0 /* Models */,
 				F55CAD43280A794000ECFCA0 /* Views */,
 				F55CAD42280A4C3000ECFCA0 /* Utils */,
 				F55CAD34280A4BF300ECFCA0 /* HackthonApp.swift */,
 				F55CAD36280A4BF300ECFCA0 /* ContentView.swift */,
+				F5303468280B501100FFC26B /* Localizable.strings */,
 				F55CAD38280A4BF300ECFCA0 /* Assets.xcassets */,
 				F55CAD3A280A4BF300ECFCA0 /* Preview Content */,
 			);
@@ -112,11 +129,6 @@
 			isa = PBXGroup;
 			children = (
 				F55CAD48280A7F8F00ECFCA0 /* HomeView.swift */,
-				F55CAD51280A92FD00ECFCA0 /* ListItemView.swift */,
-				F55CAD55280A965C00ECFCA0 /* ListView.swift */,
-				F55CAD46280A7F6E00ECFCA0 /* CalendarView.swift */,
-				F55CAD57280A9E8A00ECFCA0 /* AddItemView.swift */,
-				F55CAD5D280B0C9C00ECFCA0 /* CustomCalendar.swift */,
 				F5303462280B424D00FFC26B /* CapsuleView.swift */,
 			);
 			path = Views;
@@ -128,16 +140,9 @@
 				F55CAD4A280A7FAE00ECFCA0 /* CalendarModel.swift */,
 				F55CAD4F280A918900ECFCA0 /* TaskModel.swift */,
 				F55CAD5F280B112F00ECFCA0 /* DateModel.swift */,
+				F530346D280BA5F700FFC26B /* TaskData.xcdatamodeld */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		F55CAD45280A794C00ECFCA0 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				F55CAD53280A94B800ECFCA0 /* HomeViewModel.swift */,
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		F55CAD4C280A844500ECFCA0 /* Extension */ = {
@@ -147,6 +152,67 @@
 				F55CAD59280AA52700ECFCA0 /* Date.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		F5680ACA280BD12100E67F29 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				F5680ACB280BD12800E67F29 /* Today */,
+				F5680ACC280BD13300E67F29 /* Calendar */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		F5680ACB280BD12800E67F29 /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				F5680ACE280BD14D00E67F29 /* ViewModels */,
+				F5680ACD280BD14000E67F29 /* Views */,
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
+		F5680ACC280BD13300E67F29 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				F5680AD0280BD16D00E67F29 /* ViewModels */,
+				F5680ACF280BD16400E67F29 /* Views */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		F5680ACD280BD14000E67F29 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F55CAD51280A92FD00ECFCA0 /* ListItemView.swift */,
+				F55CAD55280A965C00ECFCA0 /* ListView.swift */,
+				F55CAD57280A9E8A00ECFCA0 /* AddItemView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F5680ACE280BD14D00E67F29 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F55CAD53280A94B800ECFCA0 /* HomeViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		F5680ACF280BD16400E67F29 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F55CAD46280A7F6E00ECFCA0 /* CalendarView.swift */,
+				F55CAD5D280B0C9C00ECFCA0 /* CustomCalendar.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F5680AD0280BD16D00E67F29 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,7 +256,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
+				"zh-Hans",
 			);
 			mainGroup = F55CAD28280A4BF300ECFCA0;
 			productRefGroup = F55CAD32280A4BF300ECFCA0 /* Products */;
@@ -208,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F55CAD3C280A4BF300ECFCA0 /* Preview Assets.xcassets in Resources */,
+				F5303466280B501100FFC26B /* Localizable.strings in Resources */,
 				F55CAD39280A4BF300ECFCA0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,12 +287,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F55CAD37280A4BF300ECFCA0 /* ContentView.swift in Sources */,
+				F530346C280BA53300FFC26B /* TaskDataService.swift in Sources */,
 				F55CAD49280A7F8F00ECFCA0 /* HomeView.swift in Sources */,
 				F55CAD56280A965C00ECFCA0 /* ListView.swift in Sources */,
 				F55CAD35280A4BF300ECFCA0 /* HackthonApp.swift in Sources */,
 				F5303463280B424D00FFC26B /* CapsuleView.swift in Sources */,
 				F55CAD5E280B0C9C00ECFCA0 /* CustomCalendar.swift in Sources */,
 				F55CAD60280B112F00ECFCA0 /* DateModel.swift in Sources */,
+				F530346F280BA5F700FFC26B /* TaskData.xcdatamodeld in Sources */,
 				F55CAD52280A92FD00ECFCA0 /* ListItemView.swift in Sources */,
 				F55CAD47280A7F6E00ECFCA0 /* CalendarView.swift in Sources */,
 				F55CAD5C280AB78B00ECFCA0 /* NotificationManager.swift in Sources */,
@@ -239,6 +308,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F5303468280B501100FFC26B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5303467280B501100FFC26B /* zh-Hans */,
+				F5303469280B504200FFC26B /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F55CAD3D280A4BF300ECFCA0 /* Debug */ = {
@@ -435,6 +516,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F530346D280BA5F700FFC26B /* TaskData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F530346E280BA5F700FFC26B /* TaskData.xcdatamodel */,
+			);
+			currentVersion = F530346E280BA5F700FFC26B /* TaskData.xcdatamodel */;
+			path = TaskData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F55CAD29280A4BF300ECFCA0 /* Project object */;
 }

@@ -26,6 +26,7 @@ struct CustomCalendar: View {
                     
                     Text(getYearAndMonth()[1])
                         .font(.title.bold())
+                        .accessibilityLabel(Text("\(getYearAndMonth()[0])年\(getYearAndMonth()[1])"))
                     
                 }
                 
@@ -41,6 +42,7 @@ struct CustomCalendar: View {
                     } label: {
                         Image(systemName: "chevron.left")
                     }
+                    .accessibilityLabel(Text("返回一个月"))
                     
                     
                     Button {
@@ -50,6 +52,7 @@ struct CustomCalendar: View {
                     } label: {
                         Image(systemName: "chevron.right")
                     }
+                    .accessibilityLabel(Text("前进一个月"))
                     
                 }
                 .foregroundColor(Color.theme.gray)
@@ -100,40 +103,29 @@ extension CustomCalendar{
                     return taskData.createTime.isSameDay(date: value.date)
                 }
                 
-                let taskP0 = tasks.filter({$0.priority == .P0}).prefix(3)
-                let taskP1 = tasks.filter({$0.priority == .P1}).prefix(3)
-                let taskP2 = tasks.filter({$0.priority == .P2}).prefix(3)
-                let taskP3 = tasks.filter({$0.priority == .P3}).prefix(3)
-                
-                let taskP = [taskP0,taskP1,taskP2,taskP3]
-                
                 Text("\(value.day)")
                     .font(.title3)
                     .opacity(value.day == -1 ? 0 : 1)
-                
+                    .accessibilityLabel(Text("\(getYearAndMonth()[1])\(value.day)日"))
                 Spacer()
-             
+                
+                VStack{
                     
-                    ForEach(0..<taskP.count) { idx in
+                    ForEach(tasks) { task in
                         
-                    VStack{
-                        ForEach(taskP[idx]) { task in
-                            HStack{
-                                Circle()
-                                    . fill(
-                                        
-                                        vm.priArray.first(where: { (p,_,_) in
-                                            return task.priority == p
-                                        })?.2 ?? Color.theme.gray
-                                    
-                                    )
-                                    .frame(width: 8, height: 8)
-                            }
-                        }
-                        
+                        Circle()
+                            .fill(
+                                vm.priArray.first(where: { (p,_,_) in
+                                    return task.priority == p
+                                })?.2 ?? Color.theme.gray
+                            )
+                            .frame(width: 8, height: 8)
                     }
+                    
                 }
                 
+          
+                        
             }
             
         }

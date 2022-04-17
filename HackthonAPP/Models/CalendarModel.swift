@@ -16,4 +16,20 @@ struct CalendarModel {
     var week: String
     var year: String
     var month: String
+    
+    func readMonthAndDay()->String {
+        return "\(month)\(day)\(week)"
+    }
+    
+    func readYear()->String{
+        return "\(year)年"
+
+    }
+    
+    func readMonth()->String{
+        return "\(month)"
+
+    }
+    
+    
 }

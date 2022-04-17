@@ -11,17 +11,30 @@ struct ListView: View {
     @EnvironmentObject private var vm:HomeViewModel
     @State var isShowAddItem:Bool = false
     @Binding var date:Date
-    
+    @State var count:Int = 0
     var body: some View {
         VStack{
             
             HStack{
-                Text("任务列表")
+                
+                HStack{
+                    Text("任务列表")
+                        .accessibilityLabel(Text("这天是\( date.readableString(format: "YYYY dd MMM")),这天共有\( getCount() )个任务"))
+                    
+                    
+                    Text("\(getCount())")
+                        .font(.callout)
+                        .foregroundColor(Color.theme.gray)
+                        
+                }
+                
+                
                 Spacer()
                 Button {
                     isShowAddItem.toggle()
                 } label: {
                     Image(systemName: "plus.circle.fill")
+                        .accessibilityLabel(Text("添加任务"))
                 }
 
                 
@@ -33,7 +46,6 @@ struct ListView: View {
             List{
                 ForEach(vm.tasks){ item in
                     if item.createTime.isSameDay(date: date){
-                        
                         ListItemView(item: item)
                             .onTapGesture {
                                 withAnimation(.none){
@@ -43,7 +55,9 @@ struct ListView: View {
                     }
                   
                 }
-                .onDelete(perform: vm.deleteItem)
+                .onDelete(perform: { idnexSet in
+                    vm.deleteItem(indexSet: idnexSet)
+                })
                 .onMove(perform: vm.moveItem)
                 
             }
@@ -54,6 +68,10 @@ struct ListView: View {
         }
         
      
+    }
+    
+    func getCount()->Int{
+        return vm.tasks.filter({$0.createTime.isSameDay(date: date)}).count
     }
 }
 

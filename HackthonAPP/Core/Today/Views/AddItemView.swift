@@ -21,7 +21,10 @@ struct AddItemView: View {
     @State var alertTitle:String = ""
     @State var showAddReminder:Bool = false
     @State var reminderDate:Date = Date()
-    @State var priority:String = "P3"
+//    @State var priority:String = "P3"
+    @State  var priority:Int = 0
+    @State var isRepeated:Bool = false
+    
     
     
     enum ReminderOption {
@@ -41,16 +44,18 @@ struct AddItemView: View {
                 
                 VStack(){
                     
-                    Text("优先级(默认P3)")
+                    Text("调整优先级(默认P3)")
                         .font(.title)
-                        .foregroundColor(.theme.black)
+                        .foregroundColor(.theme.accent)
                         .padding()
                     // flags
                     Picker("Priority", selection: $priority) {
+                        
                         ForEach(0..<vm.priArray.count) { idx in
                             Label(vm.priArray[idx].0.rawValue, systemImage: vm.priArray[idx].1)
                                 .foregroundColor(vm.priArray[idx].2)
                         }
+                        
                     }
                     .pickerStyle(WheelPickerStyle())
                     .frame(height: 180)
@@ -58,9 +63,6 @@ struct AddItemView: View {
                 .background(Color.theme.gray.opacity(0.2))
                 .cornerRadius(15)
                 .padding(.vertical)
-               
-
-                
                 
                 reminderButtons
                 
@@ -69,7 +71,8 @@ struct AddItemView: View {
                 Button {
                     saveButtonPressed(date)
                 } label: {
-                    Text("Save")
+                    Text("保存")
+                        .fontWeight(.semibold)
                 }
                 .foregroundColor(.white)
                 .font(.title)
@@ -77,17 +80,18 @@ struct AddItemView: View {
                 .frame(maxWidth:.infinity)
                 .background(Color.theme.black)
                 .cornerRadius(10)
-
+                
                 Spacer()
             }
             .padding()
-            .navigationTitle("新增任务😀")
+//            .navigationTitle("新增任务😀")
             .navigationBarItems(trailing: Button(action: {
                 isPresented = false
             }, label: {
                 Image(systemName: "xmark")
                     .imageScale(.large)
-                    .foregroundColor(.theme.black)
+                    .foregroundColor(.theme.accent)
+                    .accessibilityHint("提出添加任务")
             }))
             .onDisappear{
                 NotificationManager.instance.reloadLocalNotifications()
@@ -112,8 +116,9 @@ extension AddItemView{
                 
                 .padding(.horizontal)
                 .frame(height: 65)
-                .background(Color.theme.black.opacity(0.3))
+                .background(Color.theme.black.opacity(0.1))
                 .cornerRadius(10)
+                .accessibilityHint("请保证至少输入大于3个字符")
         }
         
     }
@@ -139,9 +144,10 @@ extension AddItemView{
                        Text("指定日期")
                            .fontWeight(.semibold)
                            .font(.title2)
+                           .accessibilityHint("设置指定日期的提醒")
                    }
                    .padding()
-                   .padding(.trailing, 12)
+                   .padding(.trailing, 5)
                    .foregroundColor(.white)
                    .background(Color.theme.black)
                    .cornerRadius(10)
@@ -164,9 +170,10 @@ extension AddItemView{
                        Text("每日提醒")
                            .fontWeight(.semibold)
                            .font(.title2)
+                           .accessibilityHint("设置每日提醒")
                    }
                    .padding()
-                   .padding(.leading, 12)
+                   .padding(.leading, 5)
                    .foregroundColor(.white)
                    .background(Color.theme.black)
                    .cornerRadius(10)
@@ -191,6 +198,7 @@ extension AddItemView{
             return
         }
     
+        isRepeated = false
         NotificationManager.instance.createLocalNotificationForSpecificDay(title: textFieldText, day: day, hour: hour, minute: minute) { error in
             
             if error == nil {
@@ -213,6 +221,8 @@ extension AddItemView{
             print("ERROR RETURN EVERYDAY")
             return
         }
+        
+        isRepeated = true
     
         NotificationManager.instance.createLocalNotification(title: textFieldText, hour: hour, minute: minute, repeate: true, completion: { error in
             if error == nil {
@@ -242,9 +252,11 @@ extension AddItemView{
                 case .specificDay:
                     HStack{
                         Text("在")
+                            .accessibilityLabel(Text("在\(reminderDate)提醒我"))
                         DatePicker("", selection: $reminderDate)
                             .padding(.vertical)
                         Text("提醒我")
+                            .accessibilityLabel(Text("在\(reminderDate)提醒我"))
                     }
                     .font(.title2)
 
@@ -269,13 +281,18 @@ extension AddItemView{
             case .everyDay:
                 buttonPressEveryDay()
             case.none:
+                isRepeated = false
                 break
             }
             
+            let priorityData = vm.priArray[priority].0
+//            guard let priorityData = Priority(rawValue: priority) else { return }
             
-            guard let priorityData = Priority(rawValue: priority) else { return }
+            let task = TaskModel(title: textFieldText, isCompleted: false, creteTime: date, remindeTime: reminderOption != .none ? reminderDate : nil, priority: priorityData, isRepeated: isRepeated)
+//
+//            let task = vm.addItem(title: textFieldText, createTime: date, remindeTime: reminderOption != .none ? reminderDate : nil, priority:  priorityData, isReapted: isRepeated)
             
-            vm.addItem(title: textFieldText, createTime: date, remindeTime: reminderOption != .none ? reminderDate : nil, priority:  priorityData)
+            vm.updatePortfolio(task: task)
             
             if isPresented{
                 isPresented.toggle()

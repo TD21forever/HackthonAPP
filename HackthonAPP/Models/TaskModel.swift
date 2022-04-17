@@ -12,11 +12,12 @@ struct TaskModel:Identifiable,Codable {
     var id:String = UUID().uuidString
     var title:String
     var isCompleted:Bool
-    var createTime:Date = Date()
+    var createTime:Date
     var remindeTime:Date?
     var priority:Priority
+    var isRepeated:Bool
     
-    init(id:String=UUID().uuidString, title:String, isCompleted:Bool, creteTime:Date, remindeTime:Date?, priority:Priority){
+    init(id:String=UUID().uuidString, title:String, isCompleted:Bool, creteTime:Date, remindeTime:Date?, priority:Priority,isRepeated:Bool){
         
         self.id = id
         self.title = title
@@ -24,10 +25,12 @@ struct TaskModel:Identifiable,Codable {
         self.createTime = creteTime
         self.remindeTime = remindeTime
         self.priority = priority
+        self.isRepeated = isRepeated
     }
     
     func updateCompletion()->TaskModel{
-        return TaskModel(title: title, isCompleted: !isCompleted, creteTime: createTime, remindeTime: remindeTime, priority: priority)
+    
+        return TaskModel(id:id, title: title, isCompleted: !isCompleted, creteTime: createTime, remindeTime: remindeTime, priority: priority, isRepeated: isRepeated)
     }
 
 }
