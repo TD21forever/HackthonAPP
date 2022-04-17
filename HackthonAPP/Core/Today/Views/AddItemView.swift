@@ -36,11 +36,13 @@ struct AddItemView: View {
     var body: some View {
         NavigationView{
             
+            
             VStack{
                 
                 // 输入框
                 searchBar
                 .padding(.vertical)
+
                 
                 VStack(){
                     
@@ -48,6 +50,7 @@ struct AddItemView: View {
                         .font(.title)
                         .foregroundColor(.theme.accent)
                         .padding()
+                    
                     // flags
                     Picker("Priority", selection: $priority) {
                         
@@ -59,6 +62,7 @@ struct AddItemView: View {
                     }
                     .pickerStyle(WheelPickerStyle())
                     .frame(height: 180)
+                    .accessibilityLabel(Text("P\(priority)优先级"))
                 }
                 .background(Color.theme.gray.opacity(0.2))
                 .cornerRadius(15)
@@ -96,7 +100,11 @@ struct AddItemView: View {
             .onDisappear{
                 NotificationManager.instance.reloadLocalNotifications()
             }
+
         }
+        .ignoresSafeArea()
+        .navigationViewStyle(StackNavigationViewStyle())
+  
      
         
         
@@ -112,6 +120,7 @@ extension AddItemView{
     private var searchBar: some View {
         
         HStack{
+        
             TextField("请输入你的任务", text: $textFieldText)
                 
                 .padding(.horizontal)
@@ -119,6 +128,8 @@ extension AddItemView{
                 .background(Color.theme.black.opacity(0.1))
                 .cornerRadius(10)
                 .accessibilityHint("请保证至少输入大于3个字符")
+
+           
         }
         
     }
@@ -242,9 +253,11 @@ extension AddItemView{
                     
                     HStack{
                         Text("每日")
+                            .accessibilityLabel(Text("每日\(reminderDate)提醒我"))
                         DatePicker("", selection: $reminderDate, displayedComponents: .hourAndMinute)
                             .padding(.vertical)
                         Text("提醒我")
+                            .accessibilityLabel(Text("每日\(reminderDate)提醒我"))
                     }
                     .font(.title2)
 

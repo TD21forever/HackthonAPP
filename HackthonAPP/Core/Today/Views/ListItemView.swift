@@ -43,7 +43,7 @@ struct ListItemView: View {
             
             
         }
-        .font(.title)
+        .font(.title3)
         .padding(.vertical,24)
     }
 }

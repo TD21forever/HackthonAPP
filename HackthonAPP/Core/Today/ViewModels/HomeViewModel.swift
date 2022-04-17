@@ -109,6 +109,7 @@ class HomeViewModel:ObservableObject {
             item.id == curItem.id
         }) {
             let completedTask = tasks[index].updateCompletion()
+            
             // 完成了就删除
             tasks.remove(at: index)
             // 更新coredata

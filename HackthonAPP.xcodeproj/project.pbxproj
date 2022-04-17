@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F5303463280B424D00FFC26B /* CapsuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5303462280B424D00FFC26B /* CapsuleView.swift */; };
 		F5303466280B501100FFC26B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F5303468280B501100FFC26B /* Localizable.strings */; };
 		F530346C280BA53300FFC26B /* TaskDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F530346B280BA53300FFC26B /* TaskDataService.swift */; };
 		F530346F280BA5F700FFC26B /* TaskData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F530346D280BA5F700FFC26B /* TaskData.xcdatamodeld */; };
@@ -28,10 +27,10 @@
 		F55CAD5C280AB78B00ECFCA0 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD5B280AB78B00ECFCA0 /* NotificationManager.swift */; };
 		F55CAD5E280B0C9C00ECFCA0 /* CustomCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD5D280B0C9C00ECFCA0 /* CustomCalendar.swift */; };
 		F55CAD60280B112F00ECFCA0 /* DateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55CAD5F280B112F00ECFCA0 /* DateModel.swift */; };
+		F5680AD4280BF75600E67F29 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5680AD3280BF75600E67F29 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F5303462280B424D00FFC26B /* CapsuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleView.swift; sourceTree = "<group>"; };
 		F5303467280B501100FFC26B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		F5303469280B504200FFC26B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F530346B280BA53300FFC26B /* TaskDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDataService.swift; sourceTree = "<group>"; };
@@ -54,6 +53,7 @@
 		F55CAD5B280AB78B00ECFCA0 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		F55CAD5D280B0C9C00ECFCA0 /* CustomCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendar.swift; sourceTree = "<group>"; };
 		F55CAD5F280B112F00ECFCA0 /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
+		F5680AD3280BF75600E67F29 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +98,6 @@
 				F530346A280BA50500FFC26B /* Services */,
 				F55CAD4C280A844500ECFCA0 /* Extension */,
 				F55CAD44280A794500ECFCA0 /* Models */,
-				F55CAD43280A794000ECFCA0 /* Views */,
 				F55CAD42280A4C3000ECFCA0 /* Utils */,
 				F55CAD34280A4BF300ECFCA0 /* HackthonApp.swift */,
 				F55CAD36280A4BF300ECFCA0 /* ContentView.swift */,
@@ -125,15 +124,6 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		F55CAD43280A794000ECFCA0 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				F55CAD48280A7F8F00ECFCA0 /* HomeView.swift */,
-				F5303462280B424D00FFC26B /* CapsuleView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		F55CAD44280A794500ECFCA0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +147,8 @@
 		F5680ACA280BD12100E67F29 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				F55CAD48280A7F8F00ECFCA0 /* HomeView.swift */,
+				F5680AD3280BF75600E67F29 /* Launch Screen.storyboard */,
 				F5680ACB280BD12800E67F29 /* Today */,
 				F5680ACC280BD13300E67F29 /* Calendar */,
 			);
@@ -186,6 +178,7 @@
 			children = (
 				F55CAD51280A92FD00ECFCA0 /* ListItemView.swift */,
 				F55CAD55280A965C00ECFCA0 /* ListView.swift */,
+				F55CAD46280A7F6E00ECFCA0 /* CalendarView.swift */,
 				F55CAD57280A9E8A00ECFCA0 /* AddItemView.swift */,
 			);
 			path = Views;
@@ -202,7 +195,6 @@
 		F5680ACF280BD16400E67F29 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F55CAD46280A7F6E00ECFCA0 /* CalendarView.swift */,
 				F55CAD5D280B0C9C00ECFCA0 /* CustomCalendar.swift */,
 			);
 			path = Views;
@@ -275,6 +267,7 @@
 			files = (
 				F55CAD3C280A4BF300ECFCA0 /* Preview Assets.xcassets in Resources */,
 				F5303466280B501100FFC26B /* Localizable.strings in Resources */,
+				F5680AD4280BF75600E67F29 /* Launch Screen.storyboard in Resources */,
 				F55CAD39280A4BF300ECFCA0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,7 +284,6 @@
 				F55CAD49280A7F8F00ECFCA0 /* HomeView.swift in Sources */,
 				F55CAD56280A965C00ECFCA0 /* ListView.swift in Sources */,
 				F55CAD35280A4BF300ECFCA0 /* HackthonApp.swift in Sources */,
-				F5303463280B424D00FFC26B /* CapsuleView.swift in Sources */,
 				F55CAD5E280B0C9C00ECFCA0 /* CustomCalendar.swift in Sources */,
 				F55CAD60280B112F00ECFCA0 /* DateModel.swift in Sources */,
 				F530346F280BA5F700FFC26B /* TaskData.xcdatamodeld in Sources */,
@@ -450,6 +442,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -479,6 +472,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

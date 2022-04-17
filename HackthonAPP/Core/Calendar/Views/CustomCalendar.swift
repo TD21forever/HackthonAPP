@@ -10,75 +10,23 @@ import SwiftUI
 struct CustomCalendar: View {
     @Binding var currentDate: Date
     @State var currentMonthIdx:Int = 0
+    @State var today:Date = Date()
     @EnvironmentObject private var vm:HomeViewModel
     
     let columns = Array(repeating: GridItem(.flexible()), count: 7)
-    
+    let days: [String] = ["周一","周二","周三","周四","周五","周六","周日"]
+
     var body: some View {
         
         VStack(spacing:35){
-            HStack(spacing:20){
-                
-                VStack{
-                    Text(getYearAndMonth()[0])
-                        .font(.caption)
-                        .fontWeight(.semibold)
-                    
-                    Text(getYearAndMonth()[1])
-                        .font(.title.bold())
-                        .accessibilityLabel(Text("\(getYearAndMonth()[0])年\(getYearAndMonth()[1])"))
-                    
-                }
-                
-                Spacer(minLength: 0)
-                
-                HStack{
-                    Button {
-                        withAnimation {
-                            currentMonthIdx -= 1
-                        
-                        }
-                       
-                    } label: {
-                        Image(systemName: "chevron.left")
-                    }
-                    .accessibilityLabel(Text("返回一个月"))
-                    
-                    
-                    Button {
-                        withAnimation {
-                            currentMonthIdx += 1
-                        }
-                    } label: {
-                        Image(systemName: "chevron.right")
-                    }
-                    .accessibilityLabel(Text("前进一个月"))
-                    
-                }
-                .foregroundColor(Color.theme.gray)
-              
-            }
+            
+            header
             .padding()
             
-            let days: [String] = ["周一","周二","周三","周四","周五","周六","周日"]
+            week
             
-            HStack(spacing: 0){
-                ForEach(days,id: \.self){ day in
-                    
-                    Text(day)
-                        .font(.callout)
-                        .fontWeight(.semibold)
-                        .frame(maxWidth: .infinity)
-                }
-            }
-            
-            LazyVGrid(columns: columns, spacing: 45){
-                ForEach(getSingleDayArray()){ value in
-                    CardView(value: value)
-                }
-            }
-            
-            
+            dates
+
             Spacer()
             
         }
@@ -92,6 +40,7 @@ struct CustomCalendar: View {
 extension CustomCalendar{
     
     
+    
     @ViewBuilder
     func CardView(value: DateModel)->some View{
         
@@ -103,6 +52,13 @@ extension CustomCalendar{
                     return taskData.createTime.isSameDay(date: value.date)
                 }
                 
+                let taskP0 = tasks.first(where: {$0.priority == .P0})
+                let taskP1 = tasks.first(where: {$0.priority == .P1})
+                let taskP2 = tasks.first(where: {$0.priority == .P2})
+                let taskP3 = tasks.first(where: {$0.priority == .P3})
+                
+                let taskP = [taskP0,taskP1,taskP2,taskP3]
+                
                 Text("\(value.day)")
                     .font(.title3)
                     .opacity(value.day == -1 ? 0 : 1)
@@ -111,21 +67,19 @@ extension CustomCalendar{
                 
                 VStack{
                     
-                    ForEach(tasks) { task in
-                        
-                        Circle()
-                            .fill(
-                                vm.priArray.first(where: { (p,_,_) in
-                                    return task.priority == p
-                                })?.2 ?? Color.theme.gray
-                            )
-                            .frame(width: 8, height: 8)
+                    ForEach(0..<taskP.count) { idx in
+                        let task = taskP[idx]
+                        if task != nil {
+                            Circle()
+                                .fill(
+                                    vm.priArray.first(where: { (p,_,_) in
+                                        return task?.priority == p
+                                    })?.2 ?? Color.theme.gray
+                                )
+                                .frame(width: 8, height: 8)
+                        }
                     }
-                    
                 }
-                
-          
-                        
             }
             
         }
@@ -134,6 +88,83 @@ extension CustomCalendar{
   
         
         
+    }
+    
+    private var header:some View {
+        HStack(spacing:20){
+            
+            VStack{
+                Text(getYearAndMonth()[0])
+                    .font(.caption)
+                    .fontWeight(.semibold)
+                
+                Text(getYearAndMonth()[1])
+                    .font(.title.bold())
+                    .accessibilityLabel(Text("\(getYearAndMonth()[0])年\(getYearAndMonth()[1])"))
+                
+            }
+            HStack(spacing:0){
+                
+                ForEach(0..<vm.priArray.count) { idx in
+                    Label(vm.priArray[idx].0.rawValue, systemImage: vm.priArray[idx].1)
+                        .foregroundColor(vm.priArray[idx].2)
+                }
+                
+            }
+          
+            
+            HStack{
+                Button {
+                    withAnimation {
+                        currentMonthIdx -= 1
+                    
+                    }
+                   
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .font(.title3)
+                }
+                .accessibilityLabel(Text("返回一个月"))
+                
+                
+                Button {
+                    withAnimation {
+                        currentMonthIdx += 1
+                    }
+                } label: {
+                    Image(systemName: "chevron.right")
+                        .font(.title3)
+                }
+                .accessibilityLabel(Text("前进一个月"))
+                
+            }
+            .foregroundColor(Color.theme.gray)
+          
+        }
+    }
+    
+    
+    private var week:some View {
+        
+        HStack(spacing: 0){
+            ForEach(days,id: \.self){ day in
+                
+                Text(day)
+                    .font(.callout)
+                    .fontWeight(.semibold)
+                    .frame(maxWidth: .infinity)
+            }
+        }
+        
+    }
+    
+    private var dates:some View{
+        
+        LazyVGrid(columns: columns, spacing: 45){
+            ForEach(getSingleDayArray()){ value in
+                CardView(value: value)
+            }
+        }
     }
     
     private func getYearAndMonth()->[String]{

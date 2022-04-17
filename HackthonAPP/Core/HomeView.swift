@@ -20,7 +20,7 @@ struct HomeView: View {
                 VStack{
                     
                     CalendarView(date: $date)
-                    Divider()
+//                    Divider()
                     ListView(date: $date)
                 }
                

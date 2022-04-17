@@ -15,33 +15,69 @@ struct ListView: View {
     var body: some View {
         VStack{
             
-            HStack{
-                
-                HStack{
-                    Text("任务列表")
-                        .accessibilityLabel(Text("这天是\( date.readableString(format: "YYYY dd MMM")),这天共有\( getCount() )个任务"))
-                    
-                    
-                    Text("\(getCount())")
-                        .font(.callout)
-                        .foregroundColor(Color.theme.gray)
-                        
-                }
-                
-                
-                Spacer()
-                Button {
-                    isShowAddItem.toggle()
-                } label: {
-                    Image(systemName: "plus.circle.fill")
-                        .accessibilityLabel(Text("添加任务"))
-                }
-
-                
-            }
+            listHeader
             .foregroundColor(Color.theme.accent)
-            .font(.title)
+            .font(.title2)
             .padding()
+            
+            ZStack{
+                
+                listContent
+                    .listStyle(PlainListStyle())
+                
+                
+                if getCount() == 0{
+                    Text("还没有任务,点击右上角的➕进行添加")
+                        .font(.title)
+                        .foregroundColor(.theme.gray.opacity(0.5))
+                        .padding(30)
+                }
+            }
+           
+        }
+        .sheet(isPresented: $isShowAddItem) {
+            AddItemView(date: $date, isPresented: $isShowAddItem)
+        }
+        
+     
+    }
+    
+    func getCount()->Int{
+        return vm.tasks.filter({$0.createTime.isSameDay(date: date)}).count
+    }
+}
+
+extension ListView{
+    private var listHeader:some View{
+        HStack{
+            
+            HStack{
+                Text("任务列表")
+                    .accessibilityLabel(Text("这天是\( date.readableString(format: "YYYY dd MMM")),这天共有\( getCount() )个任务"))
+                
+                
+                Text("\(getCount())")
+                    .font(.callout)
+                    .foregroundColor(Color.theme.gray)
+   
+            }
+            
+            Spacer()
+            
+            Button {
+                isShowAddItem.toggle()
+            } label: {
+                Image(systemName: "plus.circle.fill")
+                    .font(.system(size: 44))
+                    .accessibilityLabel(Text("添加任务"))
+            }
+
+            
+        }
+    }
+    
+    private var listContent: some View{
+        VStack{
             
             List{
                 ForEach(vm.tasks){ item in
@@ -61,17 +97,9 @@ struct ListView: View {
                 .onMove(perform: vm.moveItem)
                 
             }
-            .listStyle(PlainListStyle())
         }
-        .sheet(isPresented: $isShowAddItem) {
-            AddItemView(date: $date, isPresented: $isShowAddItem)
-        }
-        
-     
-    }
-    
-    func getCount()->Int{
-        return vm.tasks.filter({$0.createTime.isSameDay(date: date)}).count
+
+   
     }
 }
 

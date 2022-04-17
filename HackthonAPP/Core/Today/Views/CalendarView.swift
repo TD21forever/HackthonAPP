@@ -17,13 +17,18 @@ struct CalendarView: View {
         ZStack{
             VStack{
           
+                yearView
+
+                
                 monthView
-        
+                
+                Divider()
+                        
                 dayAndWeekView
    
-                Divider()
+               
                 
-                yearView
+                
            
             }
             .font(.title)
@@ -31,6 +36,7 @@ struct CalendarView: View {
             dayAndWeekButtonView
            
         }
+        .background(Color.theme.gray.opacity(0.08).ignoresSafeArea())
         .cornerRadius(15)
         .onAppear{
             updateCurCalendar()
@@ -88,13 +94,13 @@ extension CalendarView{
                 updateCurCalendar()
                 
             } label: {
-                Image(systemName: "arrow.left")
+                Image(systemName: "arrowshape.turn.up.left.fill")
                     .font(.title)
                     .foregroundColor(Color.theme.gray)
                     
                    
             }
-            .accessibilityLabel(Text("增加月份" + "当前" + calendar.readMonth()))
+            .accessibilityLabel(Text("减少月份" + "当前" + calendar.readMonth()))
 
             
             Spacer()
@@ -102,7 +108,7 @@ extension CalendarView{
                 date = Calendar.current.date(byAdding: .month, value: 1, to: date) ?? Date()
                 updateCurCalendar()
             } label: {
-                Image(systemName: "arrow.right")
+                Image(systemName: "arrowshape.turn.up.right.fill")
                     .font(.title)
                     .foregroundColor(Color.theme.gray)
                    
@@ -135,10 +141,12 @@ extension CalendarView{
     private var dayAndWeekButtonView:some View{
         HStack{
             Button {
+                
                 date = Calendar.current.date(byAdding: .day, value: -1, to: date) ?? Date()
                 updateCurCalendar()
+              
             } label: {
-                Image(systemName: "arrow.left")
+                Image(systemName: "arrowshape.turn.up.left.fill")
                     .font(.title)
                     .foregroundColor(Color.theme.gray)
             }
@@ -149,7 +157,7 @@ extension CalendarView{
                 date = Calendar.current.date(byAdding: .day, value: 1, to: date) ?? Date()
                 updateCurCalendar()
             } label: {
-                Image(systemName: "arrow.right")
+                Image(systemName: "arrowshape.turn.up.right.fill")
                     .font(.title)
                     .foregroundColor(Color.theme.gray)
             }
@@ -174,9 +182,9 @@ extension CalendarView{
                     date = Calendar.current.date(byAdding: .year, value: -1, to: date) ?? Date()
                     updateCurCalendar()
                 } label: {
-                    Image(systemName: "arrow.left")
+                    Image(systemName: "arrowshape.turn.up.left.fill")
                         .font(.title)
-                        .foregroundColor(Color.theme.gray)
+                        .foregroundColor(Color.theme.accent)
                 }
                 .accessibilityLabel(Text("向前一年" + "当前" + calendar.readYear()))
 
@@ -186,15 +194,17 @@ extension CalendarView{
                     updateCurCalendar()
                 } label: {
                     
-                    Image(systemName: "arrow.right")
+                    Image(systemName: "arrowshape.turn.up.right.fill")
                         .font(.title)
-                        .foregroundColor(Color.theme.gray)
+                        .foregroundColor(Color.theme.accent)
                 }
                 .accessibilityLabel(Text("向后一年" + "当前" + calendar.readYear()))
 
             }
             .padding(.horizontal,30)
         }
+        .frame(height:80)
+        .background(Color.theme.orange.opacity(0.8))
       
     }
 }
